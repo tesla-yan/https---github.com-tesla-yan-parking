@@ -1,0 +1,6 @@
+rootProject.name = 'parking'
+include 'parking-base'
+//include 'parking-parkinglot'
+include 'parking-parking'
+//include 'parking-application'
+

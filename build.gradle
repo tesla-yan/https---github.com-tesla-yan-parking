@@ -1,0 +1,72 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.3.0'
+	id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+repositories {
+	mavenLocal()
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework:spring-context:5.3.20'
+}
+
+subprojects {
+	apply plugin: 'java'
+	apply plugin: 'application'
+	apply plugin: 'idea'
+
+	dependencies {
+		implementation 'org.springframework:spring-context:5.3.20'
+
+		// spring boot
+		implementation 'org.springframework.boot:spring-boot-starter-web:2.1.4.RELEASE'
+		implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:2.1.4.RELEASE'
+		implementation 'org.springframework.boot:spring-boot-devtools:2.1.4.RELEASE'
+		implementation 'org.springframework.data:spring-data-commons:2.1.4.RELEASE'
+		implementation 'org.springframework.boot:spring-boot-starter-aop:2.1.4.RELEASE'
+		implementation 'org.springframework.boot:spring-boot-starter-logging:2.1.4.RELEASE'
+		implementation 'org.springframework.boot:spring-boot-starter-actuator:2.1.4.RELEASE'
+
+		// database
+		implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.1.8.RELEASE'
+		implementation 'org.mybatis:mybatis:3.5.1'
+		implementation 'mysql:mysql-connector-java:8.0.16'
+		implementation 'com.zaxxer:HikariCP:3.3.1'
+
+		// tool
+		implementation 'org.projectlombok:lombok:1.18.30'
+		compileOnly 'org.projectlombok:lombok:1.18.30'
+		annotationProcessor 'org.projectlombok:lombok:1.18.30'
+		implementation('io.springfox:springfox-swagger2:2.9.2') {
+			exclude group: 'io.swagger', module: 'swagger-models'
+		}
+		implementation 'io.swagger:swagger-models:1.6.1'
+		implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+
+		// util
+		implementation 'commons-lang:commons-lang:2.6'
+		implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.14.0'
+		implementation group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
+
+		// test
+		testImplementation 'junit:junit:4.12'
+		testImplementation 'org.springframework.boot:spring-boot-starter-test:2.1.4.RELEASE'
+	}
+
+}
+
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

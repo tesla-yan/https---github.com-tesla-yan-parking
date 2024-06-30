@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.3.0'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+mainClassName = 'com.smart.parking.MainApplication'
+
+dependencies {
+    implementation project(path: ':parking-base')
+}
+
+test {
+    useJUnitPlatform()
+}
